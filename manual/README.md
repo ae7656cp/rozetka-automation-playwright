@@ -1,9 +1,9 @@
 # Manual Testing Documentation
 
-В этом разделе представлены результаты моей работы по ручному тестированию маркетплейса Rozetka.
+This section presents the results of manual testing performed on the Rozetka marketplace.
 
-### Что внутри:
-*   **Test Plan & Test Cases**: Полное описание стратегии тестирования и детальные сценарии проверок.
-*   **Bug Reports**: Примеры оформленных багов с использованием DevTools и Jira.
-*   **API Testing**: Чек-лист и коллекция запросов в Postman для проверки серверной части.
-*   **SQL Practice**: Скрипты для работы с базой данных (выборки, фильтрация данных).
+### What's Inside:
+* Test Plan & Test Cases: Comprehensive testing strategy and detailed test scenarios.
+* Bug Reports: Professional bug reporting samples using DevTools and Jira.
+* API Testing: Checklists and Postman collections for server-side verification.
+* SQL Practice: Database queries for data selection and filtering.
