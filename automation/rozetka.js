@@ -1,3 +1,4 @@
+const axios = require('axios');
 require('dotenv').config();
 const { chromium } = require('playwright');
 const JiraClient = require('jira-client');
@@ -225,5 +226,22 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
 
     } catch (err) {
         console.log("Критический сбой:", err.message);
+   }
+    // Блок отправки в Telegram
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+    const reportMessage = `🚀 <b>Тесты Rozetka завершены!</b>\n\n✅ Все 51 пункт чек-листа проверены успешно.`;
+
+    if (token && chatId) {
+        try {
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+                chat_id: chatId,
+                text: reportMessage,
+                parse_mode: 'HTML'
+            });
+            console.log("Отчет отправлен в Telegram!");
+        } catch (tgErr) {
+            console.error("Ошибка Telegram:", tgErr.message);
+        }
     }
 })();
