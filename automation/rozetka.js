@@ -183,11 +183,11 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
             }},
             { id: '51', goal: 'Финальный тест стабильности', url: 'https://rozetka.com.ua/ua/', action: async (p) => { await p.waitForTimeout(1000); }}
         ];
-
+console.log("Количество тестов в наборе:", testSuite.length);
         // ВЫПОЛНЕНИЕ
         for (let i = 0; i < testSuite.length; i++) {
             const test = testSuite[i];
-            process.stdout.write(`[${i + 1}/51] 🧪 TC_${test.id} | 🎯 Цель: ${test.goal.padEnd(40)} `);
+           console.log(`[${i + 1}/51] 🧪 TC_${test.id} | 🎯 Цель: ${test.goal}`);
 
             try {
                 await page.goto(test.url, { waitUntil: 'domcontentloaded', timeout: 60000 });
