@@ -252,12 +252,11 @@ console.log("Количество тестов в наборе:", testSuite.leng
             console.error("❌ Ошибка Telegram:", tgErr.message);
         }
     }
-
     // ВЫХОДИМ В ЛЮБОМ СЛУЧАЕ
     console.log("🏁 Завершение процесса...");
     if (browser) await browser.close();
     process.exit(0); 
-
+     } 
   } catch (err) {
     console.error("Критический сбой:", err.message);
     if (browser) await browser.close();
