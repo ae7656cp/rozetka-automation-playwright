@@ -211,6 +211,7 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
                 console.log(`❌ ОШИБКА -> Создан баг в Jira: ${issue.key}`);
             } catch (jiraErr) {
     console.log(`❌ ОШИБКА Jira:`, jiraErr.message);
+                failedTests.push("❌ " + test.goal);
     if (jiraErr.response && jiraErr.response.data) {
         console.log(`Детали от Jira:`, JSON.stringify(jiraErr.response.data));
     }
@@ -227,7 +228,6 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
 
     } catch (err) {
         console.log("Критический сбой:", err.message);
-        failedTests.push(`❌ ${test.goal}`);
    }
     // Блок отправки в Telegram
     const token = process.env.TELEGRAM_BOT_TOKEN;
