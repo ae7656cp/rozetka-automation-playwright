@@ -252,14 +252,16 @@ console.log("Количество тестов в наборе:", testSuite.leng
             console.error("❌ Ошибка Telegram:", tgErr.message);
         }
     }
-    // ВЫХОДИМ В ЛЮБОМ СЛУЧАЕ
-    console.log("🏁 Завершение процесса...");
-    if (browser) await browser.close();
-    process.exit(0); 
-     } 
+   } // Конец блока if (token && chatId)
+
   } catch (err) {
     console.error("Критический сбой:", err.message);
     if (browser) await browser.close();
-    process.exit(1); // Выход с ошибкой, чтобы GitHub остановил таймер
+    process.exit(1); 
   }
+
+  // ЭТОТ БЛОК ДОЛЖЕН БЫТЬ САМЫМ ПОСЛЕДНИМ, ВНЕ TRY/CATCH
+  console.log("🏁 Завершение процесса...");
+  if (browser) await browser.close();
+  process.exit(0); 
 })();
