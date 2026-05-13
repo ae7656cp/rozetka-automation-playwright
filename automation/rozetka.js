@@ -15,6 +15,7 @@ const jira = new JiraClient({
 const JIRA_PROJECT_KEY = 'AUTO';
 
 (async () => {
+    let failedTests = [];
     let browser;
     try {
         console.log("Проверка связи с Jira...");
@@ -226,11 +227,18 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
 
     } catch (err) {
         console.log("Критический сбой:", err.message);
+        failedTests.push(`❌ ${test.goal}`);
    }
     // Блок отправки в Telegram
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
-    const reportMessage = `🚀 <b>Тесты Rozetka завершены!</b>\n\n✅ Все 51 пункт чек-листа проверены успешно.`;
+    let reportMessage = `🚀 <b>Тесты Rozetka завершены!</b>\n\n`;
+    
+    if (failedTests.length > 0) {
+        reportMessage += `⚠️ <b>Найдено ошибок (${failedTests.length}):</b>\n\n${failedTests.join('\n')}`;
+    } else {
+        reportMessage += `✅ Все 51 пункт чек-листа проверены успешно.`;
+    }
 
     if (token && chatId) {
         try {
