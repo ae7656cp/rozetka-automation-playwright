@@ -252,5 +252,5 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
         }
     }
 })();
-  }
+ 
  
