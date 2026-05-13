@@ -250,9 +250,8 @@ console.log("Количество тестов в наборе:", testSuite.leng
             console.error("❌ Ошибка Telegram:", tgErr.message);
         }
         } 
-    } // Эта скобка закрывает IF (token && chatId)
-    } // <--- ВОТ ЭТА СКОБКА ДОЛЖНА БЫТЬ ПЕРЕД CATCH! Она закрывает TRY.
-    catch (err) { // Теперь они стоят вплотную и ошибки не будет
+    } 
+    catch (err) { 
         console.error("Критический сбой:", err.message);
         if (browser) await browser.close();
         process.exit(1);
