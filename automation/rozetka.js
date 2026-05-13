@@ -253,7 +253,7 @@ console.log("Количество тестов в наборе:", testSuite.leng
         }
     }
 
-  } catch (err) {
+   catch (err) {
     console.error("Критический сбой:", err.message);
   } finally {
     console.log("🏁 Завершение процесса...");
