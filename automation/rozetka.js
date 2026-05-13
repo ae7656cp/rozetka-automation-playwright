@@ -251,12 +251,12 @@ console.log("Количество тестов в наборе:", testSuite.leng
         } catch (tgErr) {
             console.error("❌ Ошибка Telegram:", tgErr.message);
         }
-    console.log("🏁 Завершение процесса...");
-    if (browser) await browser.close();
-    process.exit(0);
-  } catch (err) {
-    console.error("Критический сбой:", err.message);
-    if (browser) await browser.close();
-    process.exit(1);
-  }
-})();
+        } 
+    } // Эта скобка закрывает IF (token && chatId)
+    } // <--- ВОТ ЭТА СКОБКА ДОЛЖНА БЫТЬ ПЕРЕД CATCH! Она закрывает TRY.
+    catch (err) { // Теперь они стоят вплотную и ошибки не будет
+        console.error("Критический сбой:", err.message);
+        if (browser) await browser.close();
+        process.exit(1);
+    }
+  })();
