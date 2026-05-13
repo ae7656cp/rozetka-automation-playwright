@@ -239,7 +239,7 @@ console.log("Количество тестов в наборе:", testSuite.leng
         reportMessage += `✅ Все 51 пункт чек-листа проверены успешно.`;
     }
 // Пытаемся отправить отчет, если есть данные
-    if (token && chatId) {
+   if (token && chatId) {
         try {
             console.log("Отправляем отчет в Telegram...");
             await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -252,16 +252,12 @@ console.log("Количество тестов в наборе:", testSuite.leng
             console.error("❌ Ошибка Telegram:", tgErr.message);
         }
     }
-   } // Конец блока if (token && chatId)
 
   } catch (err) {
     console.error("Критический сбой:", err.message);
+  } finally {
+    console.log("🏁 Завершение процесса...");
     if (browser) await browser.close();
-    process.exit(1); 
+    process.exit(0); 
   }
-
-  // ЭТОТ БЛОК ДОЛЖЕН БЫТЬ САМЫМ ПОСЛЕДНИМ, ВНЕ TRY/CATCH
-  console.log("🏁 Завершение процесса...");
-  if (browser) await browser.close();
-  process.exit(0); 
 })();
