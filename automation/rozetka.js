@@ -23,7 +23,7 @@ const myself = await jira.getCurrentUser();
 console.log("Вы зашли как:", myself.displayName);
        browser = await chromium.launch({ headless: true });
 const context = await browser.newContext();
-const page = await context.newPage();
+let page = await context.newPage();
 const types = await jira.listIssueTypes();
 console.log(types.map(t => ({ id: t.id, name: t.name })));
         // Функция "умного" клика и поиска для стабильности
