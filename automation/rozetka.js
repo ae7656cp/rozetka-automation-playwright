@@ -197,7 +197,7 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
              } catch (err) {
           const screenshotPath = `error_tc_${test.id}.png`;
             await page.screenshot({ path: screenshotPath });
-
+   failedTests.push(`❌ ${test.goal}`);
             try {
                 const issue = await jira.addNewIssue({
                     fields: {
