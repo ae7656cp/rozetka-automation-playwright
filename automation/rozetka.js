@@ -194,6 +194,7 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
                 await page.waitForTimeout(2500); 
                 await test.action(page);
                 console.log(`✅ ПРОЙДЕНО`);
+                failedTests.push(`✅ ${test.goal}`);
              } catch (err) {
           const screenshotPath = `error_tc_${test.id}.png`;
             await page.screenshot({ path: screenshotPath });
