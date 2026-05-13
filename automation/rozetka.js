@@ -247,10 +247,10 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
                 parse_mode: 'HTML'
             });
             console.log("Отчет отправлен в Telegram!");
-        } catch (tgErr) {
-            console.error("Ошибка Telegram:", tgErr.message);
-        }
+} catch (tgErr) {
+      console.error("Ошибка Telegram:", tgErr.message);
     }
-})();
- 
+  } // Закрывает if (дверь №3)
+} // Закрывает try (дверь №2)
+})(); // Закрывает async и запускает код (дверь №1)
  
