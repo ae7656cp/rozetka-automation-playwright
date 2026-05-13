@@ -226,10 +226,6 @@ console.log(types.map(t => ({ id: t.id, name: t.name })));
 
         console.log("\n🏁 Поздравляю! Весь чек-лист из 51 пункта проверен.");
         await page.close();
-
-    } catch (err) {
-        console.log("Критический сбой:", err.message);
-   }
     // Блок отправки в Telegram
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
