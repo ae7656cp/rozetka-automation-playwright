@@ -239,7 +239,6 @@ console.log("Количество тестов в наборе:", testSuite.leng
     } else {
         reportMessage += `✅ Все 51 пункт чек-листа проверены успешно.`;
     }
-
     if (token && chatId) {
         try {
             console.log("Отправляем отчет в Telegram...");
@@ -252,12 +251,9 @@ console.log("Количество тестов в наборе:", testSuite.leng
         } catch (tgErr) {
             console.error("❌ Ошибка Telegram:", tgErr.message);
         }
-    }
-
     console.log("🏁 Завершение процесса...");
     if (browser) await browser.close();
     process.exit(0);
-
   } catch (err) {
     console.error("Критический сбой:", err.message);
     if (browser) await browser.close();
