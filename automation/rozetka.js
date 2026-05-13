@@ -229,17 +229,18 @@ console.log("Количество тестов в наборе:", testSuite.leng
         } catch (err) {
    console.log("Критический сбой:", err.message);
            // Блок отправки в Telegram
+   // --- ФИНАЛЬНЫЙ БЛОК ---
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
     let reportMessage = `🚀 <b>Тесты Rozetka завершены!</b>\n\n`;
-    
+
     if (failedTests.length > 0) {
         reportMessage += `⚠️ <b>Найдено ошибок (${failedTests.length}):</b>\n\n${failedTests.join('\n')}`;
     } else {
         reportMessage += `✅ Все 51 пункт чек-листа проверены успешно.`;
     }
-// Пытаемся отправить отчет, если есть данные
-   if (token && chatId) {
+
+    if (token && chatId) {
         try {
             console.log("Отправляем отчет в Telegram...");
             await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -253,11 +254,13 @@ console.log("Количество тестов в наборе:", testSuite.leng
         }
     }
 
- }  catch (err) {
-    console.error("Критический сбой:", err.message);
-  } finally {
     console.log("🏁 Завершение процесса...");
     if (browser) await browser.close();
-    process.exit(0); 
+    process.exit(0);
+
+  } catch (err) {
+    console.error("Критический сбой:", err.message);
+    if (browser) await browser.close();
+    process.exit(1);
   }
 })();
