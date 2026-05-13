@@ -247,6 +247,7 @@ console.log("Количество тестов в наборе:", testSuite.leng
                 parse_mode: 'HTML'
             });
             console.log("Отчет отправлен в Telegram!");
+            process.exit(0);
 } catch (tgErr) {
       console.error("Ошибка Telegram:", tgErr.message);
     }
