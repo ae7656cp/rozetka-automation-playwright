@@ -226,8 +226,6 @@ console.log("Количество тестов в наборе:", testSuite.leng
 
         console.log("\n🏁 Поздравляю! Весь чек-лист из 51 пункта проверен.");
         await page.close();
-        } catch (err) {
-   console.log("Критический сбой:", err.message);
            // Блок отправки в Telegram
    // --- ФИНАЛЬНЫЙ БЛОК ---
     const token = process.env.TELEGRAM_BOT_TOKEN;
