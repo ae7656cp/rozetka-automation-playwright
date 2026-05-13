@@ -21,9 +21,9 @@ const JIRA_PROJECT_KEY = 'AUTO';
         console.log("Проверка связи с Jira...");
 const myself = await jira.getCurrentUser();
 console.log("Вы зашли как:", myself.displayName);
-        browser = await chromium.connectOverCDP('http://localhost:9222');
-        const context = browser.contexts()[0];
-        let page = await context.newPage();
+       browser = await chromium.launch({ headless: true });
+const context = await browser.newContext();
+const page = await context.newPage();
 const types = await jira.listIssueTypes();
 console.log(types.map(t => ({ id: t.id, name: t.name })));
         // Функция "умного" клика и поиска для стабильности
