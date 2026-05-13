@@ -238,20 +238,29 @@ console.log("Количество тестов в наборе:", testSuite.leng
     } else {
         reportMessage += `✅ Все 51 пункт чек-листа проверены успешно.`;
     }
-
+// Пытаемся отправить отчет, если есть данные
     if (token && chatId) {
         try {
+            console.log("Отправляем отчет в Telegram...");
             await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
                 chat_id: chatId,
                 text: reportMessage,
                 parse_mode: 'HTML'
             });
-            console.log("Отчет отправлен в Telegram!");
-            process.exit(0);
-} catch (tgErr) {
-      console.error("Ошибка Telegram:", tgErr.message);
+            console.log("✅ Отчет отправлен в Telegram!");
+        } catch (tgErr) {
+            console.error("❌ Ошибка Telegram:", tgErr.message);
+        }
     }
-  } // Закрывает if (дверь №3)
-} // Закрывает try (дверь №2)
-})(); // Закрывает async и запускает код (дверь №1)
- 
+
+    // ВЫХОДИМ В ЛЮБОМ СЛУЧАЕ
+    console.log("🏁 Завершение процесса...");
+    if (browser) await browser.close();
+    process.exit(0); 
+
+  } catch (err) {
+    console.error("Критический сбой:", err.message);
+    if (browser) await browser.close();
+    process.exit(1); // Выход с ошибкой, чтобы GitHub остановил таймер
+  }
+})();
