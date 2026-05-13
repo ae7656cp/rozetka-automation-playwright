@@ -6,8 +6,8 @@ const fs = require('fs');
 const jira = new JiraClient({
     protocol: 'https',
     host: 'andrey-dnepr.atlassian.net',
-    username: process.env.JIRA_USER,
-    password: process.env.JIRA_TOKEN,
+    username: process.env.JIRA_EMAIL,
+    password: process.env.JIRA_API_TOKEN,
     apiVersion: '2',
     strictSSL: true
 });
