@@ -238,32 +238,41 @@ console.log("Количество тестов в наборе:", testSuite.leng
         reportMessage += `✅ Все 51 пункт чек-листа проверены успешно.`;
     }
     if (token && chatId) {
-        try {
-            console.log("Отправляем отчет в Telegram...");
-            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-                chat_id: chatId,
-                text: reportMessage,
-                parse_mode: 'HTML'
-            });
-            console.log("✅ Отчет отправлен в Telegram!");
+    try {
+        console.log("Отправляем отчет в Telegram...");
+        await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+            chat_id: chatId,
+            text: reportMessage,
+            parse_mode: 'HTML'
+        });
+        console.log("✅ Отчет отправлен в Telegram!");
+
+        // Закрываем всё при успешном сценарии
         console.log("Закрываем сессии и браузер...");
         if (context) await context.close();
         if (browser) await browser.close();
         console.log("Тесты полностью завершены.");
-        process.exit(0); // Сигнал успешного завершения для GitHub
+        process.exit(0);
 
     } catch (tgErr) {
         console.error("❌ Ошибка Telegram:", tgErr.message);
         
+        // Закрываем всё, даже если Телеграм выдал ошибку
         if (context) await context.close();
         if (browser) await browser.close();
         process.exit(0);
     }
+} else {
+    // Если токенов нет, просто закрываем браузер
+    if (context) await context.close();
+    if (browser) await browser.close();
+    process.exit(0);
+}
+
 } catch (err) {
+    // Самый внешний catch на случай критического сбоя
     console.error("Критический сбой:", err.message);
     if (browser) await browser.close();
-    process.exit(0); // Тоже 0, чтобы GitHub Actions выдал зеленую галочку
+    process.exit(0); // Выходим с 0, чтобы Гитхаб оставался зеленым
 }
 })();
-    }
-  })();
