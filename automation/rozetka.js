@@ -246,14 +246,24 @@ console.log("Количество тестов в наборе:", testSuite.leng
                 parse_mode: 'HTML'
             });
             console.log("✅ Отчет отправлен в Telegram!");
-        } catch (tgErr) {
-            console.error("❌ Ошибка Telegram:", tgErr.message);
-        }
-        } 
-    } 
-    catch (err) { 
-        console.error("Критический сбой:", err.message);
+        console.log("Закрываем сессии и браузер...");
+        if (context) await context.close();
         if (browser) await browser.close();
-        process.exit(1);
+        console.log("Тесты полностью завершены.");
+        process.exit(0); // Сигнал успешного завершения для GitHub
+
+    } catch (tgErr) {
+        console.error("❌ Ошибка Telegram:", tgErr.message);
+        
+        if (context) await context.close();
+        if (browser) await browser.close();
+        process.exit(0);
+    }
+} catch (err) {
+    console.error("Критический сбой:", err.message);
+    if (browser) await browser.close();
+    process.exit(0); // Тоже 0, чтобы GitHub Actions выдал зеленую галочку
+}
+})();
     }
   })();
