@@ -1,5 +1,5 @@
 # Rozetka Marketplace Testing Project
-
+![Rozetka Auto-Tests](https://github.com/ae7656cp/rozetka-automation-playwright/actions/workflows/tests.yml/badge.svg)
 Comprehensive testing project for the Rozetka marketplace, featuring both automated and manual testing approaches.
 
 ## Project Structure
