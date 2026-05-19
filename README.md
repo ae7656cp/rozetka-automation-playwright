@@ -11,4 +11,4 @@ Comprehensive testing project for the Rozetka marketplace, featuring both automa
 * **Framework:** Playwright
 * **CI/CD:** GitHub Actions
 * **Integrations:** Telegram Bot API, Jira API
-* **Tools:** Browser DevTools
+* **Tools:** Postman, Browser DevTools
